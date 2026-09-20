@@ -1,0 +1,352 @@
+{
+  "version": "ml-v2.1",
+  "split": {
+    "type": "holdout_last_n_days",
+    "holdout_days": 28,
+    "final_train_end": "last_day_of_base",
+    "horizon_days": 7,
+    "prophet_window_start": "2025-09-01",
+    "note": "Baseline sazonal só referência; campeão entre Prophet e XGBoost+FE."
+  },
+  "feature_cols": [
+    "y_lag_1",
+    "y_lag_2",
+    "y_lag_3",
+    "y_lag_7",
+    "y_lag_14",
+    "y_lag_21",
+    "y_lag_28",
+    "y_roll3_mean",
+    "y_roll7_mean",
+    "y_roll7_std",
+    "y_roll14_mean",
+    "y_roll28_mean",
+    "y_ema7",
+    "y_ema28",
+    "y_diff_1",
+    "y_diff_7",
+    "y_ratio_7",
+    "y_vs_roll7",
+    "y_vs_roll28",
+    "y_dow_mean4",
+    "pct_monitoramento",
+    "pct_kpi",
+    "pct_p2",
+    "pct_p3",
+    "pct_sem_intervencao",
+    "regime_pos_set25",
+    "regime_x_mon",
+    "tgt_dow",
+    "tgt_is_weekend",
+    "tgt_month",
+    "tgt_day",
+    "tgt_weekofyear",
+    "tgt_feriado",
+    "tgt_feriado_vespera",
+    "tgt_is_month_start",
+    "tgt_is_month_end",
+    "tgt_regime",
+    "horizon"
+  ],
+  "champions": {
+    "total": "xgboost_fe",
+    "p2": "prophet_regimes",
+    "p3": "xgboost_fe",
+    "ola_p2": "prophet_regimes",
+    "ola_p3": "prophet_regimes"
+  },
+  "prophet": {
+    "total": {
+      "champion": "xgboost_fe",
+      "holdout_candidates": {
+        "baseline_sazonal_ref": {
+          "d1": {
+            "mae": 27.0,
+            "rmse": 27.0,
+            "smape": 3.56
+          },
+          "d1_d7": {
+            "mae": 81.57,
+            "rmse": 103.34,
+            "smape": 9.87
+          },
+          "mae_d1": 27.0,
+          "note": "referência apenas — não elegível a campeão"
+        },
+        "prophet_regimes": {
+          "d1": {
+            "mae": 194.35,
+            "rmse": 194.35,
+            "smape": 23.1
+          },
+          "d1_d7": {
+            "mae": 126.99,
+            "rmse": 144.95,
+            "smape": 14.48
+          },
+          "mae_d1": 194.35
+        },
+        "xgboost_fe": {
+          "d1": {
+            "mae": 45.6,
+            "rmse": 45.6,
+            "smape": 5.95
+          },
+          "d1_d7": {
+            "mae": 97.02,
+            "rmse": 140.07,
+            "smape": 11.69
+          },
+          "mae_d1": 45.6
+        }
+      },
+      "n_train_note": "baseline excluído do campeonato; FE expandida + calendário do alvo",
+      "rmse": 140.07,
+      "mape": 11.69,
+      "smape": 11.69,
+      "mae": 97.02,
+      "d1": 420.1,
+      "d7": 5437.5,
+      "peak_ds": "2026-01-03",
+      "peak_yhat": 1122.0,
+      "corr_vs_prev_week": 0.874
+    },
+    "p2": {
+      "champion": "prophet_regimes",
+      "holdout_candidates": {
+        "baseline_sazonal_ref": {
+          "d1": {
+            "mae": 11.0,
+            "rmse": 11.0,
+            "smape": 21.78
+          },
+          "d1_d7": {
+            "mae": 31.14,
+            "rmse": 50.01,
+            "smape": 38.09
+          },
+          "mae_d1": 11.0,
+          "note": "referência apenas — não elegível a campeão"
+        },
+        "prophet_regimes": {
+          "d1": {
+            "mae": 45.6,
+            "rmse": 45.6,
+            "smape": 67.25
+          },
+          "d1_d7": {
+            "mae": 27.68,
+            "rmse": 32.08,
+            "smape": 45.54
+          },
+          "mae_d1": 45.6
+        },
+        "xgboost_fe": {
+          "d1": {
+            "mae": 74.79,
+            "rmse": 74.79,
+            "smape": 90.77
+          },
+          "d1_d7": {
+            "mae": 97.08,
+            "rmse": 134.13,
+            "smape": 88.8
+          },
+          "mae_d1": 74.79
+        }
+      },
+      "n_train_note": "baseline excluído do campeonato; FE expandida + calendário do alvo",
+      "rmse": 32.08,
+      "mape": 45.54,
+      "smape": 45.54,
+      "mae": 27.68,
+      "d1": 57.2,
+      "d7": 275.8,
+      "peak_ds": "2026-01-01",
+      "peak_yhat": 57.2,
+      "corr_vs_prev_week": -0.758
+    },
+    "p3": {
+      "champion": "xgboost_fe",
+      "holdout_candidates": {
+        "baseline_sazonal_ref": {
+          "d1": {
+            "mae": 0.0,
+            "rmse": 0.0,
+            "smape": 0.0
+          },
+          "d1_d7": {
+            "mae": 22.86,
+            "rmse": 38.88,
+            "smape": 11.66
+          },
+          "mae_d1": 0.0,
+          "note": "referência apenas — não elegível a campeão"
+        },
+        "prophet_regimes": {
+          "d1": {
+            "mae": 56.26,
+            "rmse": 56.26,
+            "smape": 26.03
+          },
+          "d1_d7": {
+            "mae": 76.38,
+            "rmse": 95.56,
+            "smape": 32.78
+          },
+          "mae_d1": 56.26
+        },
+        "xgboost_fe": {
+          "d1": {
+            "mae": 53.93,
+            "rmse": 53.93,
+            "smape": 33.49
+          },
+          "d1_d7": {
+            "mae": 70.93,
+            "rmse": 75.53,
+            "smape": 58.05
+          },
+          "mae_d1": 53.93
+        }
+      },
+      "n_train_note": "baseline excluído do campeonato; FE expandida + calendário do alvo",
+      "rmse": 75.53,
+      "mape": 58.05,
+      "smape": 58.05,
+      "mae": 70.93,
+      "d1": 385.0,
+      "d7": 3325.0,
+      "peak_ds": "2026-01-03",
+      "peak_yhat": 559.3,
+      "corr_vs_prev_week": 0.937
+    },
+    "ola_p2": {
+      "champion": "prophet_regimes",
+      "holdout_candidates": {
+        "baseline_sazonal_ref": {
+          "d1": {
+            "mae": 1.0,
+            "rmse": 1.0,
+            "smape": 200.0
+          },
+          "d1_d7": {
+            "mae": 0.14,
+            "rmse": 0.38,
+            "smape": 200.0
+          },
+          "mae_d1": 1.0,
+          "note": "referência apenas — não elegível a campeão"
+        },
+        "prophet_regimes": {
+          "d1": {
+            "mae": 0.46,
+            "rmse": 0.46,
+            "smape": 200.0
+          },
+          "d1_d7": {
+            "mae": 0.2,
+            "rmse": 0.26,
+            "smape": 200.0
+          },
+          "mae_d1": 0.46
+        },
+        "xgboost_fe": {
+          "d1": {
+            "mae": 0.97,
+            "rmse": 0.97,
+            "smape": 200.0
+          },
+          "d1_d7": {
+            "mae": 0.17,
+            "rmse": 0.37,
+            "smape": 200.0
+          },
+          "mae_d1": 0.97
+        }
+      },
+      "n_train_note": "baseline excluído do campeonato; FE expandida + calendário do alvo",
+      "rmse": 0.26,
+      "mape": 200.0,
+      "smape": 200.0,
+      "mae": 0.2,
+      "d1": 0.3,
+      "d7": 0.9,
+      "peak_ds": "2026-01-07",
+      "peak_yhat": 0.3,
+      "corr_vs_prev_week": 0.708
+    },
+    "ola_p3": {
+      "champion": "prophet_regimes",
+      "holdout_candidates": {
+        "baseline_sazonal_ref": {
+          "d1": {
+            "mae": 1.0,
+            "rmse": 1.0,
+            "smape": 40.0
+          },
+          "d1_d7": {
+            "mae": 1.14,
+            "rmse": 1.41,
+            "smape": 168.0
+          },
+          "mae_d1": 1.0,
+          "note": "referência apenas — não elegível a campeão"
+        },
+        "prophet_regimes": {
+          "d1": {
+            "mae": 0.55,
+            "rmse": 0.55,
+            "smape": 24.07
+          },
+          "d1_d7": {
+            "mae": 0.95,
+            "rmse": 1.15,
+            "smape": 129.51
+          },
+          "mae_d1": 0.55
+        },
+        "xgboost_fe": {
+          "d1": {
+            "mae": 1.36,
+            "rmse": 1.36,
+            "smape": 50.83
+          },
+          "d1_d7": {
+            "mae": 1.1,
+            "rmse": 1.36,
+            "smape": 146.34
+          },
+          "mae_d1": 1.36
+        }
+      },
+      "n_train_note": "baseline excluído do campeonato; FE expandida + calendário do alvo",
+      "rmse": 1.15,
+      "mape": 129.51,
+      "smape": 129.51,
+      "mae": 0.95,
+      "d1": 0.6,
+      "d7": 4.2,
+      "peak_ds": "2026-01-04",
+      "peak_yhat": 1.1,
+      "corr_vs_prev_week": 0.232
+    }
+  },
+  "xgboost": {
+    "f1": 0.0434,
+    "auc": 0.7949,
+    "n_train": 20333,
+    "n_test": 5267
+  },
+  "kmeans": {
+    "k": 8,
+    "silhouette": 0.0354,
+    "n_templates": 13561
+  },
+  "n_rows": 122543,
+  "v1_reference": {
+    "total_mape": 38.83,
+    "total_rmse": 364.33,
+    "total_d1": 563.7
+  }
+}
